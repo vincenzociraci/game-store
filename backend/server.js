@@ -5,6 +5,9 @@ import cookieParser from "cookie-parser";  //per parsare i cookie del res. o pop
 import { connectDB } from "./config/db.js"; //funzione creata in db.js per il DB
 
 import authRoutes from "./routes/auth.js"; //Route di autenticazione
+import gameRoutes from "./routes/games.js"; 
+import reviewRoutes from "./routes/reviews.js";
+import orderRoutes from "./routes/orders.js";
 
 dotenv.config();
 
@@ -21,7 +24,11 @@ app.use(
 app.use(express.json()); //permette ad express di leggere il corpo richieste inviate come JSON
 app.use(cookieParser()); 
 
+//ordine non è importante perchè route non si sovrappongono
 app.use("/api/auth", authRoutes);
+app.use("/api/games", gameRoutes);
+app.use("/api/orders", orderRoutes);
+app.use("/api", reviewRoutes);
 
 app.get("/", (req, res) => {
   res.json({ message: "GameStore API attiva" });

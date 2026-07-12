@@ -1,17 +1,17 @@
-import { useAuth } from "./context/AuthContext";
-import { useCart } from "./context/CartContext";
+import { Routes, Route } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import Home from "./pages/Home";
 
 export default function App() {
-  const { loading, isAuthenticated } = useAuth();
-  const { items } = useCart();
-
-  if (loading) return <p>Caricamento...</p>;
-
   return (
-    <div style={{ padding: "1.5rem", fontFamily: "sans-serif" }}>
-      <h1>GameStore — test iniziale</h1>
-      <p>Autenticato: {isAuthenticated ? "sì" : "no"}</p>
-      <p>Giochi nel carrello: {items.length}</p>
+    <div style={{ fontFamily: "sans-serif" }}>
+      <Navbar />
+      <div style={{ padding: "1.5rem" }}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          {/* Le altre pagine arrivano nei prossimi passi */}
+        </Routes>
+      </div>
     </div>
   );
 }

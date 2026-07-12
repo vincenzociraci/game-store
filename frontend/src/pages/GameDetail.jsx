@@ -31,6 +31,11 @@ export default function GameDetail() {
     setReviews((prev) => [newReview, ...prev]);
   }
 
+  async function handleDeleteReview(reviewId) {
+    await api.deleteReview(reviewId);
+    setReviews((prev) => prev.filter((r) => r._id !== reviewId));
+  }
+
   function handleAddToCart() {
     addToCart(game);
   }
@@ -60,7 +65,7 @@ export default function GameDetail() {
       <hr style={{ margin: "2rem 0" }} />
 
       <h2>Recensioni</h2>
-      <ReviewList reviews={reviews} />
+      <ReviewList reviews={reviews} onDelete={handleDeleteReview} />
 
       {isAuthenticated ? (
         <ReviewForm onSubmit={handleAddReview} />

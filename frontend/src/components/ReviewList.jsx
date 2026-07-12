@@ -1,4 +1,8 @@
-export default function ReviewList({ reviews }) {
+import { useAuth } from "../context/AuthContext";
+
+export default function ReviewList({ reviews, onDelete }) {
+  const { isAdmin } = useAuth();
+
   if (reviews.length === 0) {
     return <p>Nessuna recensione ancora. Sii il primo a lasciarne una!</p>;
   }
@@ -15,6 +19,12 @@ export default function ReviewList({ reviews }) {
             <span>{"⭐".repeat(review.rating)}</span>
           </div>
           <p style={{ margin: "0.4rem 0 0" }}>{review.comment}</p>
+
+          {isAdmin && onDelete && (
+            <button onClick={() => onDelete(review._id)} style={{ color: "red" }}>
+              Elimina recensione
+            </button>
+          )}
         </li>
       ))}
     </ul>

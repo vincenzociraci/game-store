@@ -12,4 +12,4 @@ const reviewSchema = new mongoose.Schema(
      { timestamps: true }
 
 );
-export default mongoose.model("Game", gameSchema);
+export default mongoose.model("Review", reviewSchema);

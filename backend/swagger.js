@@ -1,5 +1,6 @@
 import swaggerAutogen from 'swagger-autogen';
 
+//i metadati di intestazione
 const doc = {
   info: {
     title: 'GameStore API',
@@ -9,7 +10,7 @@ const doc = {
   schemes: ['http'],
 };
 
-const outputFile = './swagger-output.json';
+const outputFile = './swagger-output.json'; //dove salvare il risultato
 const routes = ['./server.js']; // Punta al tuo entry point che monta le route
 
-swaggerAutogen()(outputFile, routes, doc);
+swaggerAutogen()(outputFile, routes, doc); // legge il codice, genera il file.

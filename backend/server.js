@@ -1,8 +1,8 @@
 
 import swaggerUi from 'swagger-ui-express';
-import swaggerFile from './swagger-output.json' assert { type: "json" };
+import swaggerFile from './swagger-output.json' with { type: "json" };
 
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerFile));
+
 
 import express from "express";
 import dotenv from "dotenv"; //carica variabili da .env
@@ -18,6 +18,8 @@ import orderRoutes from "./routes/orders.js";
 dotenv.config();
 
 const app = express();
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
 app.use(
     //di norma browser blocca richiesta da un origin verso altra

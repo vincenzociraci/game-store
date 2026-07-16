@@ -1,3 +1,9 @@
+
+import swaggerUi from 'swagger-ui-express';
+import swaggerFile from './swagger-output.json' assert { type: "json" };
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerFile));
+
 import express from "express";
 import dotenv from "dotenv"; //carica variabili da .env
 import cors from "cors"; //cross origin resource sharing

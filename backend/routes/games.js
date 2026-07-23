@@ -1,5 +1,7 @@
 import express from "express";
 import Game from "../models/Game.js";
+import mongoose from "mongoose";
+import Review from "../models/Review.js";
 
 const router = express.Router();
 
@@ -26,6 +28,35 @@ router.get("/:id", async (req, res) => {
     res.json(game);
   } catch (err) {
     res.status(500).json({ message: "Errore nel recupero del gioco", error: err.message });
+  }
+});
+
+// GET /api/games/:id/stats - voto medio e numero di recensioni di un gioco
+router.get("/:id/stats", async (req, res) => {
+   
+  try {
+
+    const stats = await Review.aggregate([
+      { $match: { game: new mongoose.Types.ObjectId(req.params.id) } },
+      {
+        $group: {
+          _id: "$game",
+          averageRating: { $avg: "$rating" },
+          totalReviews: { $sum: 1 },
+        },
+      },
+    ]);
+
+    if (stats.length === 0) {
+      return res.json({ averageRating: 0, totalReviews: 0 });
+    }
+
+    res.json({
+      averageRating: Math.round(stats[0].averageRating * 10) / 10,
+      totalReviews: stats[0].totalReviews,
+    });
+  } catch (err) {
+    res.status(500).json({ message: "Errore nel calcolo delle statistiche", error: err.message });
   }
 });
 

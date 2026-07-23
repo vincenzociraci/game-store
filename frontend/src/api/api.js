@@ -33,7 +33,8 @@ export const api = {
   // Giochi
   getGames: () => request("/games"),
   getGame: (id) => request(`/games/${id}`),
-
+ getGameStats: (id) => request(`/games/${id}/stats`), 
+ 
   // Autenticazione
   register: (payload) => request("/auth/register", { method: "POST", body: JSON.stringify(payload) }),
   login: (payload) => request("/auth/login", { method: "POST", body: JSON.stringify(payload) }),

@@ -13,6 +13,7 @@ export default function GameDetail() {
 
   const [game, setGame] = useState(null);
   const [reviews, setReviews] = useState([]);
+  const [stats, setStats] = useState({ averageRating: 0, totalReviews: 0 });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
@@ -28,14 +29,20 @@ export default function GameDetail() {
     api.getReviews(id).then(setReviews).catch(() => setReviews([]));
   }, [id]);
 
+  useEffect(() => {
+    api.getGameStats(id).then(setStats).catch(() => setStats({ averageRating: 0, totalReviews: 0 }));
+  }, [id]);
+
   async function handleAddReview(payload) {
     const newReview = await api.addReview(id, payload);
     setReviews((prev) => [newReview, ...prev]);
+    api.getGameStats(id).then(setStats); // aggiorna anche la media, dato che è cambiata
   }
 
   async function handleDeleteReview(reviewId) {
     await api.deleteReview(reviewId);
     setReviews((prev) => prev.filter((r) => r._id !== reviewId));
+    api.getGameStats(id).then(setStats); // aggiorna anche la media
   }
 
   function handleAddToCart() {
@@ -55,6 +62,9 @@ export default function GameDetail() {
         <div>
           <h1>{game.title}</h1>
           <p className="game-card-genre">{game.genere}</p>
+          <p>
+            Voto Medio: {stats.totalReviews > 0 ? stats.averageRating : "Nessun voto"}
+          </p>
           <p>{game.description}</p>
           <p className="price-tag">Gratis</p>
 

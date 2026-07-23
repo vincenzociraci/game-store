@@ -1,111 +1,235 @@
-:root {
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #fff;
-  --border: #e5e4e7;
-  --code-bg: #f4f3ec;
-  --accent: #aa3bff;
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
-  --social-bg: rgba(244, 243, 236, 0.5);
-  --shadow:
-    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
-
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --mono: ui-monospace, Consolas, monospace;
-
-  font: 18px/145% var(--sans);
-  letter-spacing: 0.18px;
-  color-scheme: light dark;
-  color: var(--text);
-  background: var(--bg);
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-
-  @media (max-width: 1024px) {
-    font-size: 16px;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
-    --accent-border: rgba(192, 132, 252, 0.5);
-    --social-bg: rgba(47, 48, 58, 0.5);
-    --shadow:
-      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
-  }
-
-  #social .button-icon {
-    filter: invert(1) brightness(2);
-  }
+/* ---------- Reset di base ---------- */
+* {
+  box-sizing: border-box;
 }
 
 body {
   margin: 0;
+  font-family: sans-serif;
+  background-color: var(--color-bg);
+  color: var(--color-text);
 }
 
-#root {
-  width: 1126px;
-  max-width: 100%;
+/* ---------- Variabili di colore ---------- */
+:root {
+  --color-navy: #2a3f5f;
+  --color-navy-rgb: 42, 63, 95; /* stesso colore, in componenti RGB per poterlo usare con trasparenza */
+  --color-primary: #e05252;
+  --color-primary-disabled: #c9a3a3;
+  --color-danger: #b3261e;
+  --color-success: #1f8a4c;
+  --color-bg: #f4f5f7;
+  --color-surface: #ffffff;
+  --color-text: #1f2933;
+}
+
+.container {
+  max-width: 1100px;
   margin: 0 auto;
-  text-align: center;
-  border-inline: 1px solid var(--border);
-  min-height: 100svh;
+  padding: 1.5rem;
+}
+
+/* ---------- Navbar ---------- */
+.navbar {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+  background-color: var(--color-navy);
+  color: white;
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+}
+
+.navbar-brand {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.navbar-user {
+  opacity: 0.85;
+}
+
+
+
+
+/* ---------- Bottoni ---------- */
+.btn {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+
+.btn-primary {
+  background-color: var(--color-primary);
+  color: white;
+}
+
+.btn-primary:disabled {
+  background-color: var(--color-primary-disabled);
+  cursor: not-allowed;
+}
+
+.btn-danger {
+  background-color: var(--color-danger);
+  color: white;
+}
+
+.btn-small {
+  padding: 0.25rem 0.6rem;
+  font-size: 0.8rem;
+}
+
+/* ---------- Form ---------- */
+.form-container {
+  max-width: 320px;
+  margin: 2rem auto;
+  background: var(--color-surface);
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+.form-container label {
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.form-container input,
+.form-container select,
+.form-container textarea {
+  width: 100%;
+  margin-top: 0.3rem;
+  padding: 0.5rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.error-text {
+  color: var(--color-danger);
+  font-weight: 500;
+}
+
+
+
+/* ---------- Catalogo giochi ---------- */
+.game-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+  list-style: none;
+  padding: 0;
+}
+
+.game-card {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: var(--color-navy);
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+.game-card-overlay {
+  position: absolute;
+  inset: 0;
   display: flex;
   flex-direction: column;
-  box-sizing: border-box;
+  justify-content: flex-end;
+  padding: 1rem;
+  background: rgba(var(--color-navy-rgb), 0.72);
+  color: white;
+  text-decoration: none;
 }
 
-h1,
-h2 {
-  font-family: var(--heading);
-  font-weight: 500;
-  color: var(--text-h);
+.game-card-overlay:focus-visible {
+  outline: 2px solid white;
+  outline-offset: -2px;
 }
 
-h1 {
-  font-size: 56px;
-  letter-spacing: -1.68px;
-  margin: 32px 0;
-  @media (max-width: 1024px) {
-    font-size: 36px;
-    margin: 20px 0;
-  }
-}
-h2 {
-  font-size: 24px;
-  line-height: 118%;
-  letter-spacing: -0.24px;
-  margin: 0 0 8px;
-  @media (max-width: 1024px) {
-    font-size: 20px;
-  }
-}
-p {
-  margin: 0;
+.game-card-overlay .game-card-genre {
+  color: rgba(255, 255, 255, 0.85);
+  margin: 0.2rem 0 0;
 }
 
-code,
-.counter {
-  font-family: var(--mono);
-  display: inline-flex;
-  border-radius: 4px;
-  color: var(--text-h);
+/* ---------- Dettaglio gioco ---------- */
+.game-detail-header {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
 }
 
-code {
-  font-size: 15px;
-  line-height: 135%;
-  padding: 4px 8px;
-  background: var(--code-bg);
+.game-detail-header img {
+  width: 220px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.price-tag {
+  font-weight: bold;
+  color: var(--color-success);
+}
+
+/* ---------- Recensioni ---------- */
+.review-list {
+  list-style: none;
+  padding: 0;
+}
+
+.review-item {
+  background: var(--color-bg);
+  padding: 0.8rem;
+  margin-bottom: 0.6rem;
+  border-radius: 6px;
+}
+
+.review-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+
+
+
+/* ---------- Carrello ---------- */
+.cart-list {
+  list-style: none;
+  padding: 0;
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: var(--color-surface);
+  border-radius: 8px;
+  padding: 0.6rem 1rem;
+  margin-bottom: 0.6rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.cart-item img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.cart-item-title {
+  flex: 1;
+}
+
+
+/* ---------- Admin ---------- */
+.admin-game-block {
+  margin-bottom: 2rem;
 }

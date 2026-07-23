@@ -7,6 +7,7 @@ import { BrowserRouter } from "react-router-dom";
 import App from "./App.jsx";
 import { AuthProvider } from "./context/AuthContext.jsx";
 import { CartProvider } from "./context/CartContext.jsx";
+import "./index.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(  
 //prende il <div id="root"> di index.html e lo trasforma nella radice in cui React userà il controllo

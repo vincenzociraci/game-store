@@ -9,28 +9,28 @@ dotenv.config();
 
 const sampleGames = [
   {
-    title: "Gioco1",
+    title: "New Super Mario Bros DS",
     description: "Platformer 2D retro",
-    genre: "Platform",
-    coverImage: "",
+    genere: "Platform",
+    cover: "https://i.imgur.com/wCqsFFB.png",
   },
   {
-    title: "Gioco2",
+    title: "Halo 3",
     description: "Combattimenti real time.",
-    genre: "Sparatutto",
-    coverImage: "",
+    genere: "Sparatutto",
+    cover: "https://i.imgur.com/bIB6aJL.jpeg",
   },
   {
-    title: "Gioco 3",
+    title: "Tetris",
     description: "Puzzle game rilassante.",
-    genre: "Puzzle",
-    coverImage: "",
+    genere: "Puzzle",
+    cover: "https://i.imgur.com/WGCceFK.jpeg",
   },
   {
-    title: "Gioco4",
+    title: "Dragon Quest 3",
     description: "Turn Based RPG",
-    genre: "Strategia",
-    coverImage: "",
+    genere: "Strategia",
+    cover: "https://i.imgur.com/t2V2l0s.jpeg",
   },
 ];
 

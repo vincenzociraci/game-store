@@ -13,6 +13,7 @@ const cookieOptions = {
   secure: process.env.NODE_ENV === "production",
   // può essere utilizzato solo in un contesto first-party
   // ma è inviato anche quando un utente naviga verso l’origin site dall’esterno
+  //con lax il browser rifiuta di allegare i cookie nel deployment render
  sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
   maxAge: 7 * 24 * 60 * 60 * 1000, // durata cookie, 7 giorni
 };

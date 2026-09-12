@@ -161,6 +161,28 @@ body {
   margin: 0.2rem 0 0;
 }
 
+.catalog-filters {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+ 
+.catalog-search {
+  flex: 1;
+  min-width: 200px;
+  padding: 0.5rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+ 
+.catalog-genre {
+  padding: 0.5rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background: var(--color-surface);
+}
+
 /* ---------- Dettaglio gioco ---------- */
 .game-detail-header {
   display: flex;

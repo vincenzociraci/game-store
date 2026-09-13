@@ -18,16 +18,21 @@ export default function Navbar() {
       {isAdmin && <Link to="/admin">Amministrazione</Link>}
 
       {isAuthenticated ? (
+        
         <>
-          <span className="navbar-user">Ciao, {user.username}</span>
-          <button onClick={logout}>Logout</button>
-        </>
-      ) : (
-        <>
-          <Link to="/login">Login</Link>
-          <Link to="/register">Registrati</Link>
-        </>
-      )}
+        
+    <Link to="/orders">Libreria</Link>
+    <span className="navbar-user">Ciao, {user.username}</span>
+    <button onClick={logout}>Logout</button>
+  </>
+) : (
+  <>
+    <Link to="/login">Login</Link>
+    <Link to="/register">Registrati</Link>
+  </>
+)}
+
+         
     </nav>
   );
 }

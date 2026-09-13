@@ -7,6 +7,8 @@ import Cart from "./pages/Cart";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Admin from "./pages/Admin";
+import Orders from "./pages/Orders";
+
 
 export default function App() {
   return (
@@ -19,6 +21,17 @@ export default function App() {
           <Route path="/cart" element={<Cart />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+
+
+
+          <Route
+  path="/orders"
+  element={
+    <PrivateRoute>
+      <Orders />
+    </PrivateRoute>
+  }
+  />
           <Route
             path="/admin"
             element={

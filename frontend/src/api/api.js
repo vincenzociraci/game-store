@@ -49,4 +49,14 @@ export const api = {
 
   // Ordini
   checkout: (gameIds) => request("/orders", { method: "POST", body: JSON.stringify({ gameIds }) }),
+
+  
+getMyOrders: () => request("/orders/me"),
+
+
 };
+
+
+
+
+  

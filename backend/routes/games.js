@@ -18,6 +18,42 @@ router.get("/", async (req, res) => {
   }
 });
 
+
+// GET /api/games/stats - voto medio e numero recensioni di TUTTI i giochi in un colpo solo
+router.get("/stats", async (req, res) => {
+  try {
+    const stats = await Review.aggregate([
+      {
+        $group: {
+          _id: "$game",
+          averageRating: { $avg: "$rating" },
+          totalReviews: { $sum: 1 },
+        },
+      },
+    ]);
+
+    // Trasformo l'array in un oggetto indicizzato per id del gioco,
+    // cosi' il frontend puo' accedere direttamente con stats[gameId].
+    const statsByGame = {};
+    stats.forEach((s) => {
+      statsByGame[s._id] = {
+        averageRating: Math.round(s.averageRating * 10) / 10,
+        totalReviews: s.totalReviews,
+      };
+    });
+
+    res.json(statsByGame);
+  } catch (err) {
+    res
+      .status(500)
+      .json({ message: "Errore nel calcolo delle statistiche", error: err.message });
+  }
+});
+
+
+
+
+
 // GET /api/games/:id - dettaglio di un singolo gioco
 router.get("/:id", async (req, res) => {
   try {

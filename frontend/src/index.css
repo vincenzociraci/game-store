@@ -116,6 +116,60 @@ body {
   font-weight: 500;
 }
 
+/* ---------- Sezione "Giochi piu' votati" ---------- */
+.top-games {
+  background: var(--color-surface);
+  border-radius: 10px;
+  padding: 1rem 1.5rem;
+  margin-top: 1.5rem;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+.top-games h2 {
+  margin-top: 0;
+}
+
+.top-games-list {
+  margin: 0;
+  padding-left: 1.5rem;
+}
+
+.top-games-item {
+  margin-bottom: 0.4rem;
+}
+
+.top-games-link {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  color: var(--color-text);
+  text-decoration: none;
+  padding: 0.3rem 0;
+}
+
+.top-games-cover {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 6px;
+  flex-shrink: 0;
+}
+
+.top-games-link:hover .top-games-title {
+  text-decoration: underline;
+}
+
+.top-games-title {
+  font-weight: 500;
+  flex: 1;
+}
+
+.top-games-rating {
+  font-weight: bold;
+  color: var(--color-navy);
+  white-space: nowrap;
+}
+
 
 
 /* ---------- Catalogo giochi ---------- */
